@@ -3932,11 +3932,27 @@ $("busca").addEventListener(
 
 $("salvarBtn").onclick = () => {
 
+    /* Mantém o salvamento do dia exatamente como antes. */
     salvarStorage();
 
     toast(
         "Dia salvo com sucesso! 💾"
     );
+
+    /* Após salvar, oferece imediatamente uma cópia de segurança. */
+    setTimeout(() => {
+
+        const desejaBackup = confirm(
+            "Dia salvo com sucesso! 💾\n\n" +
+            "Deseja salvar agora uma cópia de segurança dos seus dados?\n\n" +
+            "O backup será salvo como arquivo JSON no seu dispositivo."
+        );
+
+        if(desejaBackup){
+            exportarDados();
+        }
+
+    }, 250);
 
 };
 
